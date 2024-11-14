@@ -42,7 +42,7 @@ function Login() {
     <IonCard>
       <img
         alt="Banner da tela de login"
-        src="/public/images/banner-login.jpg"
+        src="/images/banner-login.jpg"
         style={{
           aspectRatio: "4/3",
           height: "40vh",
