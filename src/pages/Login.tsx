@@ -27,7 +27,9 @@ function Login() {
 
       alert("Login realizado com sucesso" + response);
 
-      // window.location.href = '/home';
+      localStorage.setItem("userEmail", email);
+
+      window.location.href = "/tab1";
     } catch (error: any) {
       setError(
         "Erro ao realizar login, verifique seus dados e tente novamente."
