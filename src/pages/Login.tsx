@@ -25,7 +25,8 @@ function Login() {
     try {
       const response = await login(email, password);
 
-      alert("Login realizado com sucesso" + response);
+      alert("Login realizado com sucesso");
+      console.log(response);
 
       localStorage.setItem("userEmail", email);
 
