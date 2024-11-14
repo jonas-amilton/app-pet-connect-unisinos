@@ -15,4 +15,24 @@ export const login = async (email: string, password: string) => {
   }
 };
 
+export const register = async (
+  email: string,
+  username: string,
+  password: string
+) => {
+  try {
+    const response = await api.post("/users/register", {
+      email,
+      username,
+      password,
+      isAdmin: false,
+    });
+
+    return response;
+  } catch (error: string | any) {
+    console.log("error in register", error);
+    throw error;
+  }
+};
+
 export default api;
