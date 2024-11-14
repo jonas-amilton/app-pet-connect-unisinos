@@ -45,6 +45,7 @@ import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import PrivateRoute from "./components/PrivateRoute";
 
 setupIonicReact();
 
@@ -56,17 +57,11 @@ const App: React.FC = () => (
           <Route exact path="/login">
             <Login />
           </Route>
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
+          <PrivateRoute path="/tab1" component={Tab1} exact />
+          <PrivateRoute path="/tab2" component={Tab2} exact />
+          <PrivateRoute path="/tab3" component={Tab3} exact />
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/login" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
