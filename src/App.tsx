@@ -46,8 +46,11 @@ import "@ionic/react/css/palettes/dark.system.css";
 /* Theme variables */
 import "./theme/variables.css";
 import PrivateRoute from "./components/PrivateRoute";
+import Register from "./pages/Register";
 
 setupIonicReact();
+
+const isLoggedIn = localStorage.getItem("userEmail");
 
 const App: React.FC = () => (
   <IonApp>
@@ -57,6 +60,9 @@ const App: React.FC = () => (
           <Route exact path="/login">
             <Login />
           </Route>
+          <Route exact path="/register">
+            <Register />
+          </Route>
           <PrivateRoute path="/tab1" component={Tab1} exact />
           <PrivateRoute path="/tab2" component={Tab2} exact />
           <PrivateRoute path="/tab3" component={Tab3} exact />
@@ -64,20 +70,22 @@ const App: React.FC = () => (
             <Redirect to="/login" />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
+        {isLoggedIn && (
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="tab1" href="/tab1">
+              <IonIcon aria-hidden="true" icon={triangle} />
+              <IonLabel>Tab 1</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="tab2" href="/tab2">
+              <IonIcon aria-hidden="true" icon={ellipse} />
+              <IonLabel>Tab 2</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="tab3" href="/tab3">
+              <IonIcon aria-hidden="true" icon={square} />
+              <IonLabel>Tab 3</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+        )}
       </IonTabs>
     </IonReactRouter>
   </IonApp>
