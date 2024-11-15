@@ -10,9 +10,8 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { albumsOutline, enterOutline, square } from "ionicons/icons";
+import { addCircleOutline, albumsOutline, enterOutline } from "ionicons/icons";
 import Home from "./pages/Home";
-import Tab3 from "./pages/Tab3";
 import Login from "./pages/Login";
 
 /* Core CSS required for Ionic components to work properly */
@@ -47,6 +46,7 @@ import "./theme/variables.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./pages/Register";
 import Logout from "./pages/Logout";
+import AddPet from "./pages/AddPet";
 
 setupIonicReact();
 
@@ -65,7 +65,7 @@ const App: React.FC = () => (
           </Route>
           <PrivateRoute path="/home" component={Home} exact />
           <PrivateRoute path="/logout" component={Logout} exact />
-          <PrivateRoute path="/tab3" component={Tab3} exact />
+          <PrivateRoute path="/add-pet" component={AddPet} exact />
           <Route exact path="/">
             <Redirect to="/login" />
           </Route>
@@ -80,9 +80,9 @@ const App: React.FC = () => (
               <IonIcon aria-hidden="true" icon={albumsOutline} />
               <IonLabel>Home</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab3" href="/tab3">
-              <IonIcon aria-hidden="true" icon={square} />
-              <IonLabel>Tab 3</IonLabel>
+            <IonTabButton tab="add-pet" href="/add-pet">
+              <IonIcon aria-hidden="true" icon={addCircleOutline} />
+              <IonLabel>Adicionar Pet</IonLabel>
             </IonTabButton>
           </IonTabBar>
         )}
