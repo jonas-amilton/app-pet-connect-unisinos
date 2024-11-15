@@ -35,4 +35,14 @@ export const register = async (
   }
 };
 
+export const getPets = async () => {
+  try {
+    const response = await api.get("/pets");
+    return response.data;
+  } catch (error: any) {
+    console.error("Erro ao buscar pets:", error);
+    throw error;
+  }
+};
+
 export default api;

@@ -31,7 +31,7 @@ function Login() {
 
       localStorage.setItem("userEmail", email);
 
-      window.location.href = "/tab1";
+      window.location.href = "/home";
     } catch (error: any) {
       setError(
         "Erro ao realizar login, verifique seus dados e tente novamente."
