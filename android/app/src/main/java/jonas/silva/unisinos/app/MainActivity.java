@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package jonas.silva.unisinos.app;
 
 import com.getcapacitor.BridgeActivity;
 

@@ -1,9 +1,9 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import type { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'app-pet-connect-unisinos',
-  webDir: 'dist'
+  appId: "jonas.silva.unisinos.app",
+  appName: "app-pet-connect-unisinos",
+  webDir: "dist",
 };
 
 export default config;
