@@ -27,12 +27,11 @@ function Register() {
     try {
       const response = await register(email, username, password);
       alert("Usuário registrado com sucesso, faça login!");
-      console.log(response);
 
       window.location.href = "/login";
     } catch (error: any) {
       setError("Erro ao registrar usuário, tente novamente.");
-      console.log(error);
+      throw new Error(error);
     } finally {
       setLoading(false);
     }
