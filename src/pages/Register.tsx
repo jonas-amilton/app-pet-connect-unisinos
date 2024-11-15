@@ -9,7 +9,7 @@ import InputEmail from "../components/InputEmail";
 import InputPassword from "../components/InputPassword";
 import ButtonAuth from "../components/ButtonAuth";
 import { register } from "../services/apiService"; // Caminho correto do arquivo
-import InputUsername from "../components/InputUsername";
+import InputName from "../components/InputName";
 import { Link } from "react-router-dom";
 
 function Register() {
@@ -55,7 +55,7 @@ function Register() {
 
       <IonCardContent>
         <form onSubmit={handleRegister}>
-          <InputUsername
+          <InputName
             value={username}
             onChange={(event: CustomEvent) => setUsername(event.detail.value)}
           />
