@@ -9,6 +9,7 @@ import InputEmail from "../components/InputEmail";
 import InputPassword from "../components/InputPassword";
 import ButtonAuth from "../components/ButtonAuth";
 import { login } from "../services/apiService";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState<string>("");
@@ -69,6 +70,16 @@ function Login() {
           {error && <p style={{ color: "red" }}>{error}</p>}
           <ButtonAuth buttonText={loading ? "Carregando..." : "Acessar"} />
         </form>
+        <Link
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingTop: "1em",
+          }}
+          to="/register"
+        >
+          Não tem conta? Registre-se
+        </Link>
       </IonCardContent>
     </IonCard>
   );
