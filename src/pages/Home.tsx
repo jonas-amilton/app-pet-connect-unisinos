@@ -10,7 +10,6 @@ import {
   IonCardTitle,
   IonCardSubtitle,
 } from "@ionic/react";
-import "./Home.css";
 import Carousel from "../components/Carousel";
 import { getPets } from "../services/apiService";
 
