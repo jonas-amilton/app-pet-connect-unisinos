@@ -9,6 +9,9 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardSubtitle,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
 } from "@ionic/react";
 import Carousel from "../components/Carousel";
 import { getPets } from "../services/apiService";
@@ -36,6 +39,11 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Home</IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <IonContent fullscreen>
         <Carousel />
         {loading ? (
