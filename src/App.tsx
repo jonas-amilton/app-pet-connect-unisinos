@@ -10,9 +10,8 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { albumsOutline, ellipse, square } from "ionicons/icons";
+import { albumsOutline, enterOutline, square } from "ionicons/icons";
 import Home from "./pages/Home";
-import Tab2 from "./pages/Tab2";
 import Tab3 from "./pages/Tab3";
 import Login from "./pages/Login";
 
@@ -47,6 +46,7 @@ import "@ionic/react/css/palettes/dark.system.css";
 import "./theme/variables.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./pages/Register";
+import Logout from "./pages/Logout";
 
 setupIonicReact();
 
@@ -64,7 +64,7 @@ const App: React.FC = () => (
             <Register />
           </Route>
           <PrivateRoute path="/home" component={Home} exact />
-          <PrivateRoute path="/tab2" component={Tab2} exact />
+          <PrivateRoute path="/logout" component={Logout} exact />
           <PrivateRoute path="/tab3" component={Tab3} exact />
           <Route exact path="/">
             <Redirect to="/login" />
@@ -72,9 +72,9 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         {isLoggedIn && (
           <IonTabBar slot="bottom">
-            <IonTabButton tab="tab2" href="/tab2">
-              <IonIcon aria-hidden="true" icon={ellipse} />
-              <IonLabel>Tab 2</IonLabel>
+            <IonTabButton tab="logout" href="/logout">
+              <IonIcon aria-hidden="true" icon={enterOutline} />
+              <IonLabel>Logout</IonLabel>
             </IonTabButton>
             <IonTabButton tab="home" href="/home">
               <IonIcon aria-hidden="true" icon={albumsOutline} />
