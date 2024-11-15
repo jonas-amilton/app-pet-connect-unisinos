@@ -26,8 +26,6 @@ function Login() {
     try {
       const response = await login(email, password);
 
-      console.log(response);
-
       localStorage.setItem("userEmail", email);
 
       window.location.href = "/home";
@@ -35,7 +33,7 @@ function Login() {
       setError(
         "Erro ao realizar login, verifique seus dados e tente novamente."
       );
-      console.log(error);
+      throw new Error(error);
     } finally {
       setLoading(false);
     }
