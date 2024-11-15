@@ -1,0 +1,5 @@
+// Capacitor settings for Android
+def capacitorAndroidDir = new File(rootProject.projectDir, 'node_modules/@capacitor/android')
+if (capacitorAndroidDir.exists()) {
+    apply from: new File(capacitorAndroidDir, 'capacitor.settings.gradle')
+}
