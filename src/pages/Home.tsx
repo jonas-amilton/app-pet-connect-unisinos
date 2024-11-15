@@ -14,7 +14,7 @@ import {
   IonTitle,
 } from "@ionic/react";
 import Carousel from "../components/Carousel";
-import { getPets } from "../services/apiService";
+import { getPetPhoto, getPets } from "../services/apiService";
 
 const Home: React.FC = () => {
   const [pets, setPets] = useState<any[]>([]);
@@ -23,12 +23,10 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchPets = async () => {
       try {
-        console.log("Buscando pets...");
         const response = await getPets();
-        console.log("Resposta da API:", response);
         setPets(response.data);
       } catch (error: any) {
-        console.log("Erro ao buscar pets", error);
+        throw new Error("Erro ao buscar pets", error);
       } finally {
         setLoading(false);
       }
@@ -59,7 +57,7 @@ const Home: React.FC = () => {
                     <IonCard>
                       <img
                         alt="Silhouette of mountains"
-                        src={`/images/${pet.photo}`}
+                        src={getPetPhoto(pet.photo)}
                         height={"100vh"}
                         width={"100%"}
                       />
