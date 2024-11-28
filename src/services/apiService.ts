@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://api-pet-connect-unisinos.onrender.com", // remota
+  baseURL: "https://api-pet-connect-unisinos-v2.onrender.com/api/pet-connect", // remota
   // baseURL: "http://localhost:3000/", // local
 });
 
 export const login = async (email: string, password: string) => {
   try {
-    const response = await api.post("/users/login", { email, password });
+    const response = await api.post("/auth/login", { email, password });
 
     return response;
   } catch (error: string | any) {
@@ -21,7 +21,7 @@ export const register = async (
   password: string
 ) => {
   try {
-    const response = await api.post("/users/register", {
+    const response = await api.post("/auth/register", {
       email,
       username,
       password,
