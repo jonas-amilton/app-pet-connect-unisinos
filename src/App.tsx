@@ -67,7 +67,7 @@ const App: React.FC = () => (
           <PrivateRoute path="/logout" component={Logout} exact />
           <PrivateRoute path="/add-pet" component={AddPet} exact />
           <Route exact path="/">
-            <Redirect to="/login" />
+            {isLoggedIn ? <Redirect to="/home" /> : <Redirect to="/login" />}
           </Route>
         </IonRouterOutlet>
         {isLoggedIn && (
