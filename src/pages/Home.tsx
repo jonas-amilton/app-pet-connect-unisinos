@@ -19,14 +19,22 @@ import { getPetPhoto, getPets } from "../services/apiService";
 const Home: React.FC = () => {
   const [pets, setPets] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const fetchPets = async () => {
       try {
         const response = await getPets();
-        setPets(response.data);
+        const petsWithImages = await Promise.all(
+          response.data.map(async (pet: any) => {
+            const image = await getPetPhoto(pet.id);
+            return { ...pet, imageData: image };
+          })
+        );
+        setPets(petsWithImages);
       } catch (error: any) {
-        throw new Error("Erro ao buscar pets", error);
+        setError("Erro ao buscar pets");
+        // console.error("Error fetching pets:", error);
       } finally {
         setLoading(false);
       }
@@ -46,32 +54,36 @@ const Home: React.FC = () => {
         <Carousel />
         {loading ? (
           <p>Carregando lista de pets...</p>
+        ) : error ? (
+          <p>{error}</p>
         ) : (
           <IonGrid fixed={false}>
             <IonRow>
               {pets.length === 0 ? (
                 <p>Nenhum pet encontrado</p>
               ) : (
-                pets.map((pet, index) => (
-                  <IonCol key={index}>
-                    <IonCard>
-                      <img
-                        alt="Silhouette of mountains"
-                        src={getPetPhoto(pet.photo)}
-                        height={"100vh"}
-                        width={"100%"}
-                      />
-                      <IonCardHeader style={{ flexDirection: "column" }}>
-                        <IonCardTitle style={{ fontWeight: "lighter" }}>
-                          {pet.name}
-                        </IonCardTitle>
-                        <IonCardSubtitle>
-                          {pet.age}|{pet.size}
-                        </IonCardSubtitle>
-                      </IonCardHeader>
-                    </IonCard>
-                  </IonCol>
-                ))
+                pets.map((pet, index) => {
+                  return (
+                    <IonCol key={index}>
+                      <IonCard>
+                        <img
+                          alt={pet.name}
+                          src={pet.imageData}
+                          height={"100vh"}
+                          width={"100%"}
+                        />
+                        <IonCardHeader style={{ flexDirection: "column" }}>
+                          <IonCardTitle style={{ fontWeight: "lighter" }}>
+                            {pet.name}
+                          </IonCardTitle>
+                          <IonCardSubtitle>
+                            {pet.age}|{pet.size}
+                          </IonCardSubtitle>
+                        </IonCardHeader>
+                      </IonCard>
+                    </IonCol>
+                  );
+                })
               )}
             </IonRow>
           </IonGrid>
