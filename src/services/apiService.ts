@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://api-pet-connect-unisinos-v2.onrender.com/api/pet-connect", // remota
-  // baseURL: "http://localhost:3000/", // local
+  baseURL: "https://api-pet-connect-unisinos-v2.onrender.com/api/pet-connect",
 });
 
 export const login = async (email: string, password: string) => {
@@ -51,6 +50,12 @@ export const addPet = async (
 ) => {
   try {
     const formData = new FormData();
+
+    if (!photo) {
+      alert("Por favor, selecione uma foto para o pet.");
+      return;
+    }
+
     formData.append("name", name);
     formData.append("age", age);
     formData.append("size", size);
@@ -68,8 +73,13 @@ export const addPet = async (
   }
 };
 
-export const getPetPhoto = (photo: string) => {
-  return `${api.defaults.baseURL}${photo}`;
+export const getPetPhoto = (petId: string) => {
+  try {
+    return `${api.defaults.baseURL}/pets/${petId}/images`;
+  } catch (error: any) {
+    console.error("Erro ao carregar a imagem:", error);
+    return "";
+  }
 };
 
 export default api;
